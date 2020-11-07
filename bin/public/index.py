@@ -92,7 +92,7 @@ app = Flask(__name__)
 def hello_world():
     return render_template('index.html')
   
-@app.route('/connect', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def form():
     age = request.form.get("age")
     anaemia = request.form.get("anameia")

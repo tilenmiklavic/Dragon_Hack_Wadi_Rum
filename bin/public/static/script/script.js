@@ -1,3 +1,5 @@
+var procent;
+
 window.onload = function() {
     /*
     document.getElementById("send-data-form").addEventListener('submit', function(e) {
@@ -24,4 +26,10 @@ window.onload = function() {
         // Configuration options go here
         options: {}
     });
+
+    document.getElementById("procent").addEventListener("change", uporabi());
+}
+
+function uporabi() {
+    procent = document.getElementById("procent").value
 }
