@@ -27,7 +27,7 @@ x_train,x_test,y_train,y_test = train_test_split(x,y, test_size=0.2, random_stat
 
 # Decision Tree Classifier
 
-dt_clf = DecisionTreeClassifier(max_leaf_nodes=3, random_state=0, criterion='entropy')
+dt_clf = DecisionTreeClassifier(max_leaf_nodes=3, random_state=0, criterion='entropy')  
 dt_clf.fit(x_train, y_train)
 dt_pred = dt_clf.predict(x_test)
 dt_acc = accuracy_score(y_test, dt_pred)
