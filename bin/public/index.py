@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 # Applying logistic regression on the training set
 
 from sklearn.linear_model import LogisticRegression
@@ -15,7 +15,7 @@ all_features = heart_data.columns
 # all_features = ['age', 'anaemia', 'creatinine_phosphokinase', 'diabetes', 'ejection_fraction', 'high_blood_pressure', 'platelets', 'serum_creatinine', 'serum_sodium', 'sex', 'smoking', 'time', 'DEATH_EVENT']
 
 def calculate_probability(age, anaemia, diabetes, high_blood_pressure, smoking, sex):
-    
+
     # input_from_doc = {'age': 75, 'anaemia': 0, 'creatinine_phosphokinase': 582, 'diabetes': 0, 'ejection_fraction': 20, 'high_blood_pressure': 1, 'platelets': 265000, 'serum_creatinine': 1.9, 'serum_sodium': 130, 'sex': 1}
     input_form_person = {'age': age, 'anaemia': anaemia, 'diabetes': diabetes, 'high_blood_pressure': high_blood_pressure, 'smoking': smoking, 'sex': sex}
     # Features = ['age', 'anaemia', 'diabetes', 'high_blood_pressure', 'sex', 'smoking', 'DEATH_EVENT']
@@ -25,7 +25,7 @@ def calculate_probability(age, anaemia, diabetes, high_blood_pressure, smoking, 
 
 
     ## TODO:_ we receive a dict from frontend here, hardcoded template for now
-    dict_received = {} 
+    dict_received = {}
     features_used = dict_received.keys() # we extract features user used here, we will train our model with these
 
     x = heart_data[Features] # select data with the features we have available data for
@@ -47,11 +47,11 @@ def calculate_probability(age, anaemia, diabetes, high_blood_pressure, smoking, 
 
         print("Percent , class")
         # array of 2 elements means  [death, live] in percentages
-        # so if death % is > 0.5, then the person will die with that prob 
+        # so if death % is > 0.5, then the person will die with that prob
         for percent, class_pred in zip(y_perc, y_pred):
             if class_pred == 0: # death
                 print("dead:", round(percent[0],2), "%")
-            
+
             else: # alive
                 print("alive:", round(percent[1],2), "%")
 
@@ -73,9 +73,9 @@ def calculate_probability(age, anaemia, diabetes, high_blood_pressure, smoking, 
     DEATH = round(y_OUT[0][0], 3) # return this number to the user
     # We should also retunr the accuracy of our MODEL to predict (SUM) true positive and false negative.
     ACCURACY = ac
-    
+
     return [DEATH, ACCURACY]
-    
+
 
 # input_from_doc = {'age': 75, 'anaemia': 0, 'creatinine_phosphokinase': 582, 'diabetes': 0, 'ejection_fraction': 20, 'high_blood_pressure': 1, 'platelets': 265000, 'serum_creatinine': 1.9, 'serum_sodium': 130, 'sex': 1}
 
@@ -88,44 +88,44 @@ def calculate_probability(age, anaemia, diabetes, high_blood_pressure, smoking, 
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def hello_world():
     return render_template('index.html')
-  
-@app.route('/', methods=['POST', 'GET'])
+
+@app.route('/', methods=['POST'])
 def form():
-    age = request.form.get("age")
-    anaemia = request.form.get("anameia")
+    age = request.json.get("age")
+    anaemia = request.json.get("anameia")
     if anaemia == None:
         anaemia = 0
     else:
         anaemia = 1
-        
-    diabetes = request.form.get("diabetes")
+
+    diabetes = request.json.get("diabetes")
     if diabetes == None:
         diabetes = 0
     else:
         diabetes = 1
-        
-    high_blood_pressure = request.form.get("high_blood_pressure")
+
+    high_blood_pressure = request.json.get("pressure")
     if high_blood_pressure == None:
         high_blood_pressure = 0
     else:
         high_blood_pressure = 1
-        
-    smoking = request.form.get("smoking")
+
+    smoking = request.json.get("smoking")
     if smoking == None:
         smoking = 0
     else:
         smoking = 1
-        
-    sex = request.form.get("sex")
+
+    sex = request.json.get("sex")
     if sex == 'male':
         sex = 1
     else:
         sex = 0
-        
-    
+
+
     data = calculate_probability(age, anaemia, diabetes, high_blood_pressure, smoking, sex)
-    
-    return render_template('index.html', name=data[0])
+
+    return jsonify(data)

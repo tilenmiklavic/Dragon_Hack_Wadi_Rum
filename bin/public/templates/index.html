@@ -22,7 +22,7 @@
       <h5 class="card-title p-">Find out if you are about to die from a heart attack</h5>
       <div class="container" style="padding-top: 10px;">
         <div class="row">
-          <form class="col-6" action="/" method="post">
+          <form id="send-data-form" class="col-6" action="/" method="post">
             <div class="row col-8">
               <input type="number" name="age" min="0" max="120" step="1" class="form-control" placeholder="Starost" required>
             </div>
@@ -48,12 +48,12 @@
             </div>
             <div class="row col-10 mt-2">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" name="high_blood_pressure" type="checkbox" id="blood-checkbox" value="anaemia">
-                <label class="form-check-label" for="anemia-checkbox">Blood pressure</label>
+                <input class="form-check-input" name="pressure" type="checkbox" id="pressure-checkbox" value="pressure">
+                <label class="form-check-label" for="pressure-checkbox">Blood pressure</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" name="smoking" type="checkbox" id="smoking-checkbox" value="diabetes">
-                <label class="form-check-label" for="diabetes-checkbox">Smoking</label>
+                <input class="form-check-input" name="smoking" type="checkbox" id="smoking-checkbox" value="smoking">
+                <label class="form-check-label" for="smoking-checkbox">Smoking</label>
               </div>
             </div>
             <div class="row col-8 mt-2">
