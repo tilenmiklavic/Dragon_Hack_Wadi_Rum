@@ -15,60 +15,63 @@
 
 <body>
   <div class="jumbotron jumbotron-fluid">
-    <div class="container text-center">
-      <h1 class="display-4">Healthy Heart</h1>
-      <p class="lead">Find out if you are about to die from a heart attack</p>
+    <div class="container">
     </div>
   </div>
-  <div id="send-data-form" action="#" class="container" style="padding-top: 10px;">
-    <div class="row">
-      <form class="col-6">
-        <div class="row col-8">
-          <input type="number" min="0" max="120" step="1" class="form-control" placeholder="Starost">
+  <div class="card mt-5 col-8">
+    <img src="..\static\media\header.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Find out if you are about to die from a heart attack</h5>
+      <div id="send-data-form" action="#" class="container" style="padding-top: 10px;">
+        <div class="row">
+          <form class="col-6">
+            <div class="row col-8">
+              <input type="number" min="0" max="120" step="1" class="form-control" placeholder="Starost">
+            </div>
+            <div class="row col-8 mt-2">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="sex" type="radio" id="male-radio" value="male" checked>
+                <label class="form-check-label" for="male-radio">Male</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="sex" type="radio" id="female-radio" value="female">
+                <label class="form-check-label" for="female-radio">Female</label>
+              </div>
+            </div>
+            <div class="row col-8 mt-2">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="anemia" type="checkbox" id="anemia-checkbox" value="anaemia">
+                <label class="form-check-label" for="anemia-checkbox">Anaemia</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="diabetes" type="checkbox" id="diabetes-checkbox" value="diabetes">
+                <label class="form-check-label" for="diabetes-checkbox">Diabetes</label>
+              </div>
+            </div>
+            <div class="row col-10 mt-2">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="anemia" type="checkbox" id="anemia-checkbox" value="anaemia">
+                <label class="form-check-label" for="anemia-checkbox">Blood pressure</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="diabetes" type="checkbox" id="diabetes-checkbox" value="diabetes">
+                <label class="form-check-label" for="diabetes-checkbox">Smoking</label>
+              </div>
+            </div>
+            <div class="row col-8 mt-2">
+              <button type="submit" class="btn btn-primary m-2">Submit</button>
+            </div>
+          </form>
+          <div class="col-6 border">
+            <canvas id="myChart" width="30%" height="30%"></canvas>
+          </div>
         </div>
-        <div class="row col-8 mt-2">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="sex" type="radio" id="male-radio" value="male" checked>
-            <label class="form-check-label" for="male-radio">Male</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="sex" type="radio" id="female-radio" value="female">
-            <label class="form-check-label" for="female-radio">Female</label>
-          </div>
+        <div class="row mt-3 border center">
+          <img src="https://i.pinimg.com/originals/d6/14/e0/d614e000af8b39ac276955e93d4c6a44.gif">
         </div>
-        <div class="row col-8 mt-2">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="anemia" type="checkbox" id="anemia-checkbox" value="anaemia">
-            <label class="form-check-label" for="anemia-checkbox">Anaemia</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="diabetes" type="checkbox" id="diabetes-checkbox" value="diabetes">
-            <label class="form-check-label" for="diabetes-checkbox">Diabetes</label>
-          </div>
-        </div>
-        <div class="row col-10 mt-2">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="anemia" type="checkbox" id="anemia-checkbox" value="anaemia">
-            <label class="form-check-label" for="anemia-checkbox">Blood pressure</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="diabetes" type="checkbox" id="diabetes-checkbox" value="diabetes">
-            <label class="form-check-label" for="diabetes-checkbox">Smoking</label>
-          </div>
-        </div>
-        <div class="row col-8 mt-2">
-          <button type="submit" class="btn btn-primary m-2">Submit</button>
-        </div>
-      </form>
-      <div class="col-6 border">
-        <canvas id="myChart" width="30%" height="30%"></canvas>
       </div>
     </div>
-    <div class="row mt-3 border center">
-      <img src="https://i.pinimg.com/originals/d6/14/e0/d614e000af8b39ac276955e93d4c6a44.gif">
-    </div>
   </div>
-
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

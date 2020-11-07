@@ -2,6 +2,22 @@ h1 {
   font-family: 'Lobster', cursive;
 }
 
+body {
+  background-color: whitesmoke;
+}
+
 .jumbotron {
-  background: #FFC0CB !important;
+  height: 20rem;
+  background-image: url("../media/medic.jpg");
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
 }
