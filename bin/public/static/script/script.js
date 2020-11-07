@@ -24,6 +24,18 @@ window.onload = function() {
                 procent = json[0];
                 prob = json[1];
 
+                var pos = Math.floor(Math.random() * Math.floor(4)) + 1;
+                var dejanska_verjetnost = 1 - procent;
+
+                if (dejanska_verjetnost < 0.25) {
+                    $('#modal_picture').attr('src', '../static/media/1_kvartil/' + pos + '.gif');    
+                } else if (dejanska_verjetnost < 0.5) {
+                    $('#modal_picture').attr('src', '../static/media/2_kvartil/'+ pos +'.gif');
+                } else if (dejanska_verjetnost < 0.75) {
+                    $('#modal_picture').attr('src', '../static/media/3_kvartil/'+ pos +'.gif');
+                } else {
+                    $('#modal_picture').attr('src', '../static/media/4_kvartil/' + pos + '.gif');
+                }
                 $('#exampleModal').modal('show');
                 uporabi();
             }
