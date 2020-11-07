@@ -41,13 +41,27 @@ function uporabi() {
             datasets: [{
                 backgroundColor: '#6EBEC4',
                 data: [(1 - procent) * 100, procent * 100],
-                backgroundColor: ['#6EBEC4', '#FFFFFF'],
+                backgroundColor: ['#6EBEC4', '#FFFF11'],
                 borderWidth: 5
             }],
             labels: [
                 'Probability to die',
                 'Probability to not to die'
             ]
+        },
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Lottery of death'
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
         }
     });
     console.log(procent)
