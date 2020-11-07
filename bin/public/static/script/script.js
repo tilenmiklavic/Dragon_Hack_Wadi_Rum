@@ -18,7 +18,7 @@ window.onload = function() {
                 borderColor: 'rgb(255, 99, 132)',
                 data: [70, 10],
                 backgroundColor: ['#FFC0CB', '#FFFFFF'],
-                borderWidth: 0
+                borderWidth: 5
             }]
         },
 
