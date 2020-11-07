@@ -21,45 +21,46 @@
 
   <form class="container border" style="padding-top: 10px;">
     <div class="row">
-      <div class="col">
+      <div class="col-3">
         <input type="text" class="form-control" placeholder="Starost">
       </div>
-      <div class="col">
+      <div class="col-9">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-          <label class="form-check-label" for="inlineCheckbox1">Moški</label>
+          <input class="form-check-input" name="sex" type="radio" id="male-radio" value="male" checked>
+          <label class="form-check-label" for="male-radio">Male</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-          <label class="form-check-label" for="inlineCheckbox2">Ženska</label>
+          <input class="form-check-input" name="sex" type="radio" id="female-radio" value="female">
+          <label class="form-check-label" for="female-radio">Female</label>
+        </div>
+        <div class="form-group form-check-inline">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" name="anemia" type="checkbox" id="anemia-checkbox" value="anaemia">
+            <label class="form-check-label" for="anemia-checkbox">Anaemia</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" name="diabetes" type="checkbox" id="diabetes-checkbox" value="diabetes">
+            <label class="form-check-label" for="diabetes-checkbox">Diabetes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" name="high_blood_pressure" type="checkbox" id="high-blood-checkbox" value="high_blood_pressure">
+            <label class="form-check-label" for="high-blood-checkbox">High blood pressure</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" name="smoking" type="checkbox" id="smoking-checkbox" value="smoking">
+            <label class="form-check-label" for="smoking-checkbox">Smoking</label>
+          </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="form-group form-check">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-          <label class="form-check-label" for="inlineCheckbox1">Anaemia</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-          <label class="form-check-label" for="inlineCheckbox2">Diabetes</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-          <label class="form-check-label" for="inlineCheckbox3">High blood pressure</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option4">
-          <label class="form-check-label" for="inlineCheckbox4">Smoking</label>
-        </div>
-      </div>
-    </div>  
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    </div>
+    <button type="submit" class="btn btn-primary m-2">Submit</button>
   </form>
 
   <canvas id="myChart" width="400" height="400"></canvas>
-  
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
