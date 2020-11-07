@@ -9,16 +9,21 @@ from sklearn.model_selection import train_test_split
 df = pd.read_csv("data.csv")
 heart_data = df
 
+
+
+print(heart_data[heart_data.DEATH_EVENT == 1].shape[0])
+
 # all parameters an user can input
 all_features = heart_data.columns
 # all_features = ['age', 'anaemia', 'creatinine_phosphokinase', 'diabetes', 'ejection_fraction', 'high_blood_pressure', 'platelets', 'serum_creatinine', 'serum_sodium', 'sex', 'smoking', 'time', 'DEATH_EVENT']
 
-
 # input_from_doc = {'age': 75, 'anaemia': 0, 'creatinine_phosphokinase': 582, 'diabetes': 0, 'ejection_fraction': 20, 'high_blood_pressure': 1, 'platelets': 265000, 'serum_creatinine': 1.9, 'serum_sodium': 130, 'sex': 1}
-input_form_person = {'age': 75, 'anaemia': 0, 'diabetes': 0, 'high_blood_pressure': 1, 'smoking': 0, 'sex': 1}
+input_form_person = {'age': 40, 'anaemia': 0, 'diabetes': 1,  'high_blood_pressure': 0, 'smoking': 0, 'sex': 1}
 
 # Features = ['age', 'anaemia', 'diabetes', 'high_blood_pressure', 'sex', 'smoking', 'DEATH_EVENT']
 Features = list(input_form_person.keys()) # we set features to train our model on by observing which ones a person has put in.
+print("Features:")
+print(Features)
 
 df_person = pd.DataFrame(input_form_person, index=[0]) # create person df for obtaining our result later on a trained model.
 
@@ -29,7 +34,7 @@ features_used = dict_received.keys() # we extract features user used here, we wi
 
 x = heart_data[Features] # select data with the features we have available data for
 y = heart_data["DEATH_EVENT"]
-x_train,x_test,y_train,y_test = train_test_split(x,y, test_size=0.2, random_state=2)
+x_train,x_test,y_train,y_test = train_test_split(x,y, test_size=0.1, random_state=2) 
 
 classifier = LogisticRegression() # load model type
 classifier.fit(x_train, y_train) # train our model
@@ -54,7 +59,7 @@ def print_rez():
         else: # alive
             print("alive:", round(percent[1],2), "%")
 
-    # print(len(y_perc))
+    print(len(y_perc))
 
 # print_rez() # print results of the model
 
@@ -65,13 +70,14 @@ cm = confusion_matrix(y_test, y_pred)
 ac = accuracy_score(y_test, y_pred) # for out view
 mylist.append(ac)
 print(cm)
-print(ac)
+print(round(ac,3))
 # -----------------------------------------
+
 
 # printing the value of our person likelihood of dying
 DEATH = round(y_OUT[0][0], 3) # return this number to the user
 # We should also retunr the accuracy of our MODEL to predict (SUM) true positive and false negative.
-ACCURACY = ac
+ACCURACY = round(ac,3)
 
 print("our person will die with prob: ", DEATH, "and with model accuracy", ACCURACY)
 
