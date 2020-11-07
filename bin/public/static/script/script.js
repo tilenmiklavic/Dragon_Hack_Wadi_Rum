@@ -32,4 +32,5 @@ window.onload = function() {
 
 function uporabi() {
     procent = document.getElementById("procent").value
+    console.log(procent)
 }
