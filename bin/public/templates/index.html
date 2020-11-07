@@ -6,14 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Heart Condition</title>
 
-  <script src="../script/script.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../style/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
 
 <body>
+  {{ data }}
   <div class="jumbotron jumbotron-fluid">
     <div class="container text-center">
       <h1 class="display-4">Healthy Heart</h1>
