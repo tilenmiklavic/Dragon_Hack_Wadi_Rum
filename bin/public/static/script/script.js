@@ -2,8 +2,6 @@ var procent;
 var prob;
 
 window.onload = function() {
-    $('#exampleModal').modal('show');
-
     var form = document.getElementById("send-data-form");
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -26,6 +24,7 @@ window.onload = function() {
                 procent = json[0];
                 prob = json[1];
 
+                $('#exampleModal').modal('show');
                 uporabi();
             }
         };
