@@ -1,4 +1,5 @@
 var procent;
+var prob;
 
 window.onload = function() {
     /*
@@ -16,7 +17,7 @@ window.onload = function() {
                 label: 'My First dataset',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [70, 10],
+                data: [60, 10],
                 backgroundColor: ['#FFC0CB', '#FFFFFF'],
                 borderWidth: 5
             }]
@@ -32,5 +33,7 @@ window.onload = function() {
 
 function uporabi() {
     procent = document.getElementById("procent").value
+    prob = document.getElementById("verjetnost").value
     console.log(procent)
+    console.log(prob)
 }

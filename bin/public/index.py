@@ -128,4 +128,4 @@ def form():
     
     data = calculate_probability(age, anaemia, diabetes, high_blood_pressure, smoking, sex)
     
-    return render_template('index.html', name=data[0])
+    return render_template('index.html', name=data[0], prob=data[1])
