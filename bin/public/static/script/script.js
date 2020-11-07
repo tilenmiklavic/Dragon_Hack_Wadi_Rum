@@ -1,9 +1,10 @@
 window.onload = function() {
+    /*
     document.getElementById("send-data-form").addEventListener('submit', function(e) {
         e.preventDefault();
         console.log(e);
     });
-
+    */
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'doughnut',
