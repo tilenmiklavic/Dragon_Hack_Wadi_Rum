@@ -33,7 +33,8 @@ y_pred = dtree.predict(X_test)
 
 print("Accuracy:", metrics.accuracy_score(y_test, y_pred))
 
-print(dtree.predict([[78, 0, 1, 1, 1, 1]]))
+print(dtree.predict([[78, 1, 1, 1, 1, 1]]))
+print(dtree.predict_log_proba([[78, 1, 1, 1, 1, 1]]))
 
 data = tree.export_graphviz(dtree, out_file=None, feature_names=features)
 graph = pydotplus.graph_from_dot_data(data)
