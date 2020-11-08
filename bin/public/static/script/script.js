@@ -1,7 +1,9 @@
 var procent;
 var prob;
 
+
 window.onload = function() {
+
     var form = document.getElementById("send-data-form");
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -96,6 +98,17 @@ function uporabi() {
 
     $("#progress").removeClass("d-none")
     $("#natancnost").removeClass("d-none")
+
+    var pos1 = Math.floor(Math.random() * 100);
+    var pos2 = Math.floor(Math.random() * 100);
+    var pos3 = Math.floor(Math.random() * 100);
+
+
+    $("#nasveti").removeClass("d-none")
+    $("#progress_bar100").css("width", pos1+"%")
+    $("#progress_bar101").css("width", pos2+"%")
+    $("#progress_bar102").css("width", pos3+"%")
+
     console.log(procent)
     console.log(prob)
 }
