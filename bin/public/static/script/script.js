@@ -27,6 +27,8 @@ window.onload = function() {
                 var pos = Math.floor(Math.random() * Math.floor(4)) + 1;
                 var dejanska_verjetnost = 1 - procent;
 
+                console.log("Dejanska " + dejanska_verjetnost);
+
                 if (dejanska_verjetnost < 0.25) {
                     $('#modal_picture').attr('src', '../static/media/1_kvartil/' + pos + '.gif');    
                 } else if (dejanska_verjetnost < 0.5) {
@@ -37,6 +39,11 @@ window.onload = function() {
                     $('#modal_picture').attr('src', '../static/media/4_kvartil/' + pos + '.gif');
                 }
                 $('#exampleModal').modal('show');
+
+                var new_value = Math.round(prob * 100) + '%'
+                $("#progress_bar").css('width', new_value);
+                $("#progress_bar").html(new_value);
+
                 uporabi();
             }
         };
@@ -77,6 +84,9 @@ function uporabi() {
             }
         }
     });
+
+    $("#progress").removeClass("d-none")
+    $("#natancnost").removeClass("d-none")
     console.log(procent)
     console.log(prob)
 }
