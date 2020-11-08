@@ -1,5 +1,9 @@
 var procent;
 var prob;
+var chart;
+
+var kajenje = false;
+var pritisk = false;
 
 
 window.onload = function() {
@@ -24,20 +28,24 @@ window.onload = function() {
                 // data = calculate_probability(age, anaemia, diabetes, high_blood_pressure, smoking, sex)
                 var json = JSON.parse(this.responseText);
 
-                procent = json[0];
                 prob = json[1];
+                procent = 1 - json[0];
+                if(procent < 0.4){
+                  procent = prob * procent + (1-prob)*(1-procent);
+                }
+                procent = Math.round((procent + Number.EPSILON) * 100) / 100;
 
                 var pos = Math.floor(Math.random() * Math.floor(4)) + 1;
-                var dejanska_verjetnost = 1 - procent;
+                var dejanska_verjetnost = procent;
 
                 console.log("Dejanska " + dejanska_verjetnost);
 
                 if (dejanska_verjetnost < 0.25) {
-                    $('#modal_picture').attr('src', '../static/media/1_kvartil/' + pos + '.gif');    
-                } else if (dejanska_verjetnost < 0.5) {
-                    $('#modal_picture').attr('src', '../static/media/2_kvartil/'+ pos +'.gif');
-                } else if (dejanska_verjetnost < 0.75) {
-                    $('#modal_picture').attr('src', '../static/media/3_kvartil/'+ pos +'.gif');
+                    $('#modal_picture').attr('src', '../static/media/1_kvartil/' + pos + '.gif');
+                } else if (dejanska_verjetnost <= 0.499999) {
+                    $('#modal_picture').attr('src', '../static/media/2_kvartil/' + pos + '.gif');
+                } else if (dejanska_verjetnost < 0.6) {
+                    $('#modal_picture').attr('src', '../static/media/3_kvartil/' + pos + '.gif');
                 } else {
                     $('#modal_picture').attr('src', '../static/media/4_kvartil/' + pos + '.gif');
                 }
@@ -48,11 +56,18 @@ window.onload = function() {
                 $("#progress_bar").html(new_value);
 
                 console.log(json[4]);
+                kajenje = false;
+                pritisk = false;
+
+
+                $("#pritisk").addClass('d-none');
+                $("#kajenje").addClass('d-none');
+
                 if (json[6] == 1) {
-                    $("#kajenje").removeClass('d-none'); 
+                    kajenje = true;
                 }
                 if (json[5] == 1) {
-                    $("#pritisk").removeClass('d-none');
+                    pritisk = true;
                 }
 
                 uporabi();
@@ -65,13 +80,17 @@ window.onload = function() {
 }
 
 function uporabi() {
+    if (chart != undefined && chart != null) {
+        chart.destroy();
+    }
+
     var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
+    chart = new Chart(ctx, {
         type: 'doughnut',
         data: {
             datasets: [{
                 backgroundColor: '#6EBEC4',
-                data: [(1 - procent) * 100, procent * 100],
+                data: [procent * 100, (1 - procent) * 100],
                 backgroundColor: ['#6EBEC4', '#FFFF11'],
                 borderWidth: 5
             }],
@@ -96,6 +115,8 @@ function uporabi() {
         }
     });
 
+    document.getElementById("exampleModalLabel").innerHTML = "Death probability from heart attack: " + procent;
+
     $("#progress").removeClass("d-none")
     $("#natancnost").removeClass("d-none")
 
@@ -109,6 +130,12 @@ function uporabi() {
     $("#progress_bar101").css("width", pos2+"%")
     $("#progress_bar102").css("width", pos3+"%")
 
+    if (kajenje) {
+        $("#kajenje").removeClass('d-none');
+    }
+    if (pritisk) {
+        $("#pritisk").removeClass('d-none');
+    }
     console.log(procent)
     console.log(prob)
 }

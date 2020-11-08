@@ -1,11 +1,12 @@
-# Applying logistic regression on the training set
+# Applying decision tree algorithm
+
 import numpy as np
-from sklearn.linear_model import LogisticRegression
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+
 # Importing the dataset
-
-
 df = pd.read_csv("./bin/public/data.csv")
 heart_data = df
 
@@ -26,21 +27,17 @@ serum_sodium_mean = df["serum_sodium"].mean()
 time_mean = df["time"].mean()
 # we wont be using time feature
 
-print("creatinine_phosphokinase_mean: ", creatinine_phosphokinase_mean)
-
-
 # input_from_doc = {'age': 75, 'anaemia': 0, 'creatinine_phosphokinase': 582, 'diabetes': 0, 'ejection_fraction': 20, 'high_blood_pressure': 1, 'platelets': 265000, 'serum_creatinine': 1.9, 'serum_sodium': 130, 'sex': 1}
 # input_form_person = {'age': 40, 'anaemia': 0, 'diabetes': 1,  'high_blood_pressure': 0, 'sex': 1, 'smoking': 0}
 
-dead_man = {'age': 45, 'anaemia': 0, 'diabetes': 0,  'high_blood_pressure': 1, 'sex': 1, 'smoking': 0}
-alive_man = {'age': 49, 'anaemia': 1, 'diabetes': 0,  'high_blood_pressure': 1, 'sex': 0, 'smoking': 0}
-alive_man1 = {'age': 65, 'anaemia': 1, 'diabetes': 0,  'high_blood_pressure': 1, 'sex': 0, 'smoking': 0}
-alive_man2 = {'age': 65, 'anaemia': 0, 'diabetes': 1,  'high_blood_pressure': 0, 'sex': 1, 'smoking': 0}
+dead_man1 = {'age': 75, 'anaemia': 0, 'diabetes': 0,  'high_blood_pressure': 1, 'sex': 1, 'smoking': 0}
+dead_man2 = {'age': 55, 'anaemia': 0, 'diabetes': 0,  'high_blood_pressure': 0, 'sex': 1, 'smoking': 0}
+alive_man = {'age': 40, 'anaemia': 1, 'diabetes': 0,  'high_blood_pressure': 1, 'sex': 0, 'smoking': 0}
 ALIVE = False
 if ALIVE:
-    input_form_person = dead_man
+    input_form_person = alive_man
 else:
-    input_form_person = dead_man
+    input_form_person = dead_man2
 append_data = {'creatinine_phosphokinase': creatinine_phosphokinase_mean, 'ejection_fraction': ejection_fraction_mean, 'platelets': platelets_mean, 'serum_creatinine': serum_creatinine_mean, 'serum_sodium': serum_sodium_mean, 'time': time_mean}   
 
 # append data if missing, but averages so it doesn't affect the result
@@ -54,45 +51,29 @@ print("input_form_person:", input_form_person)
 Features = list(input_form_person.keys()) # we set features to train our model on by observing which ones a person has put in.
 print("Features:")
 print(Features)
+print("input_form_person:", input_form_person)
 
 df_person = pd.DataFrame(input_form_person, index=[0]) # create person df for obtaining our result later on a trained model.
-print("Person DF:", df_person)
-
-## TODO:_ we receive a dict from frontend here, hardcoded template for now
-dict_received = {} 
-features_used = dict_received.keys() # we extract features user used here, we will train our model with these
-
-all_features = list(df.columns)
 
 x = heart_data[Features] # select data with the features we have available data for
 y = heart_data["DEATH_EVENT"]
 x_train,x_test,y_train,y_test = train_test_split(x,y, test_size=0.2, random_state=2, shuffle=True) 
 
-# Logistic regression documentation
-# https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
-classifier = LogisticRegression() # load model type
+classifier = DecisionTreeClassifier(max_leaf_nodes = 3, random_state=0, criterion='entropy')
 
-weights_custom = np.ones(239)
-weights_custom[0] = 30
-weights_custom = weights_custom / sum(weights_custom)
-
-# clf = classifier.fit(x_train, y_train, sample_weight=weights_custom) # train our model with biased weights
-clf = classifier.fit(x_train, y_train) # train our model
+classifier.fit(x_train, y_train) # train our model
 
 
 # Predicting the test set
 y_pred = classifier.predict(x_test) # binary values, array, 0 - death, 1 - alive; we don't really need these anymore
 y_perc = classifier.predict_proba(x_test) # percentage values
 
- # ----------------------------- 
-weights = classifier.coef_
-abs_weights = np.abs(weights)
 
 # print(abs_weights)
 
 
-# input the df rom a person to a trained model and get the result
-y_OUT_binary = classifier.predict(df_person)
+# input the df rom a person to a trained model and get the result:
+y_OUT_BIN = classifier.predict(df_person) # binary value if dead == 1
 y_OUT = classifier.predict_proba(df_person)
 
 def print_rez():
@@ -110,7 +91,7 @@ def print_rez():
 
     print(len(y_perc))
 
-# print_rez() # print results of the model
+print_rez() # print results of the model
 
 # Making Confusion Matrix and calculating accuracy score
 mylist = []
@@ -121,8 +102,9 @@ mylist.append(ac)
 print(cm)
 
 
-print("model acc: ",round(ac,3))
+print(round(ac,3))
 # -----------------------------------------
+
 
 # printing the value of our person likelihood of dying
 DEATH = round(y_OUT[0][0], 3) # return this number to the user
@@ -134,7 +116,12 @@ if ALIVE:
 else:
     print("Our person should DIE")
 
-print("death:", DEATH, "and with model accuracy", ACCURACY)
+print("our person will die with prob: ", DEATH, "and with model accuracy", ACCURACY)
 
 # TODO: pass/return the values it to the frontend
 # Return tuple (OUT, ACCURACY)
+
+
+
+print(y_OUT)
+print(y_OUT_BIN)
