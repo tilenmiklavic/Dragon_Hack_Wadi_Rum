@@ -26,9 +26,12 @@ window.onload = function() {
                 // data = calculate_probability(age, anaemia, diabetes, high_blood_pressure, smoking, sex)
                 var json = JSON.parse(this.responseText);
 
-                procent = 1 - json[0];
-                procent = Math.round((procent + Number.EPSILON) * 100) / 100
                 prob = json[1];
+                procent = 1 - json[0];
+                if(procent < 0.4){
+                  procent = prob * procent + (1-prob)*(1-procent);
+                }
+                procent = Math.round((procent + Number.EPSILON) * 100) / 100;
 
                 var pos = Math.floor(Math.random() * Math.floor(4)) + 1;
                 var dejanska_verjetnost = procent;
