@@ -19,6 +19,7 @@ window.onload = function() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                // data = calculate_probability(age, anaemia, diabetes, high_blood_pressure, smoking, sex)
                 var json = JSON.parse(this.responseText);
 
                 procent = json[0];
@@ -43,6 +44,14 @@ window.onload = function() {
                 var new_value = Math.round(prob * 100) + '%'
                 $("#progress_bar").css('width', new_value);
                 $("#progress_bar").html(new_value);
+
+                console.log(json[4]);
+                if (json[6] == 1) {
+                    $("#kajenje").removeClass('d-none'); 
+                }
+                if (json[5] == 1) {
+                    $("#pritisk").removeClass('d-none');
+                }
 
                 uporabi();
             }

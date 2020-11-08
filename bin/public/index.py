@@ -127,5 +127,13 @@ def form():
 
 
     data = calculate_probability(age, anaemia, diabetes, high_blood_pressure, smoking, sex)
+    
+    data.append(age)
+    data.append(anaemia)
+    data.append(diabetes)
+    data.append(high_blood_pressure)
+    data.append(smoking)
+    data.append(sex)
+    
 
     return jsonify(data)
