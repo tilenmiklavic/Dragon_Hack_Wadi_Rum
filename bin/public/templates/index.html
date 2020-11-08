@@ -14,14 +14,17 @@
 </head>
 
 <body>
+  <!-- jumbotron image now on body background
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
     </div>
   </div>
-  <div class="shadow card mt-5 col-8">
+  -->
+  <div class="shadow card mt-5 col-5">
     <img src="..\static\media\header.png" class="card-img-top" alt="...">
+    <h1 style="font-family:lobster;" class="pl-3">Healthy heart</h1>
     <div class="card-body">
-      <h5 class="card-title p-">Find out if you are about to die from a heart attack</h5>
+      <h5 class="card-title p-">Find out if you are about to suffer from a heart attack</h5>
       <div class="container" style="padding-top: 10px;">
         <div class="row">
           <form id="send-data-form" class="col-6" action="/" method="post">
@@ -68,10 +71,11 @@
           <div class="col-6">
             <canvas id="myChart" width="30%" height="30%"></canvas>
             <div id="natancnost" class="d-none">
-              <h6>Natančnost s katero smo te katogorizirali</h6>
+              <h6>Accuracy of our trained model</h6>
             </div>
             <div id="progress" class="d-none progress">
-              <div id="progress_bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+              <div id="progress_bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
             </div>
           </div>
         </div>
@@ -80,24 +84,26 @@
 
         <!--  Nasveti -->
         <div class="">
-          <h2>Nasveti za zdravje</h2>
+          <h2>Health advices</h2>
 
           <!-- Kajenje container -->
           <div id="kajenje" class="shadow d-none container" style="background-color: #EEEEEE; margin-bottom: 30px">
-            Kajenje je en od poglavitnih faktorjev, ki prispevajo k srčni kapi.
-            Zaradi vaših vnesenih parametrov vam priporočamo, da nemudoma opustite kajenje.
+            Smoking is one of the main reasons that contribute to the heart failure.
+            Based on your input parameters we higly suggest you leave smoking out if your everyday life.
           </div>
 
           <!-- High blood pressure container -->
           <div id="pritisk" class="shadow d-none container" style="background-color: #EEEEEE; margin-bottom: 30px">
-            Visok krvni pritisk ni hec!
-            Mnogo ljudi, ki trpijo za tem pojavom, dolgo časa ne vedo kaj je lahko njihova težava.
-            Priporočamo, da zmanjšate vnos mastne in sladke hrane, pijete dosti vode in se redno ukvarjate s športom.
+            High blood pressure is not a joke!
+            Many people suffering from it don't know what's it's reason.
+            We sugest you lower the input of the fats and sweets in your system You should also drink enough water and
+            exercise a lot.
           </div>
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -106,7 +112,8 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <img id="modal_picture" class="modal-content" src="https://i.pinimg.com/originals/d6/14/e0/d614e000af8b39ac276955e93d4c6a44.gif">
+              <img id="modal_picture" class="modal-content"
+                src="https://i.pinimg.com/originals/d6/14/e0/d614e000af8b39ac276955e93d4c6a44.gif">
             </div>
           </div>
         </div>
